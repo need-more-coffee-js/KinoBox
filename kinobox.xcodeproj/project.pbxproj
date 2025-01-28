@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C73A4D832D49431A00396FA2 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A4D822D49431A00396FA2 /* CustomCell.swift */; };
 		C7DA04352D492EEC00E74AB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04342D492EEC00E74AB2 /* AppDelegate.swift */; };
 		C7DA04372D492EEC00E74AB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04362D492EEC00E74AB2 /* SceneDelegate.swift */; };
 		C7DA04392D492EEC00E74AB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04382D492EEC00E74AB2 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 		0A56A168A050BA9FE5A1EE10 /* Pods-kinobox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kinobox.release.xcconfig"; path = "Target Support Files/Pods-kinobox/Pods-kinobox.release.xcconfig"; sourceTree = "<group>"; };
 		9DC2867ECA32C5A5CE774075 /* Pods-kinobox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kinobox.debug.xcconfig"; path = "Target Support Files/Pods-kinobox/Pods-kinobox.debug.xcconfig"; sourceTree = "<group>"; };
 		B734A747AC15202022DF1C3D /* Pods_kinobox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kinobox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C73A4D822D49431A00396FA2 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		C7DA04312D492EEC00E74AB2 /* kinobox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kinobox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7DA04342D492EEC00E74AB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7DA04362D492EEC00E74AB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,7 +48,6 @@
 				9DC2867ECA32C5A5CE774075 /* Pods-kinobox.debug.xcconfig */,
 				0A56A168A050BA9FE5A1EE10 /* Pods-kinobox.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -85,6 +86,7 @@
 				C7DA043D2D492EED00E74AB2 /* Assets.xcassets */,
 				C7DA043F2D492EED00E74AB2 /* LaunchScreen.storyboard */,
 				C7DA04422D492EED00E74AB2 /* Info.plist */,
+				C73A4D822D49431A00396FA2 /* CustomCell.swift */,
 			);
 			path = kinobox;
 			sourceTree = "<group>";
@@ -205,6 +207,7 @@
 			files = (
 				C7DA04392D492EEC00E74AB2 /* ViewController.swift in Sources */,
 				C7DA04352D492EEC00E74AB2 /* AppDelegate.swift in Sources */,
+				C73A4D832D49431A00396FA2 /* CustomCell.swift in Sources */,
 				C7DA04372D492EEC00E74AB2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
