@@ -10,7 +10,6 @@
 		C7DA04352D492EEC00E74AB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04342D492EEC00E74AB2 /* AppDelegate.swift */; };
 		C7DA04372D492EEC00E74AB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04362D492EEC00E74AB2 /* SceneDelegate.swift */; };
 		C7DA04392D492EEC00E74AB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04382D492EEC00E74AB2 /* ViewController.swift */; };
-		C7DA043C2D492EEC00E74AB2 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C7DA043B2D492EEC00E74AB2 /* Base */; };
 		C7DA043E2D492EED00E74AB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7DA043D2D492EED00E74AB2 /* Assets.xcassets */; };
 		C7DA04412D492EED00E74AB2 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C7DA04402D492EED00E74AB2 /* Base */; };
 /* End PBXBuildFile section */
@@ -20,7 +19,6 @@
 		C7DA04342D492EEC00E74AB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7DA04362D492EEC00E74AB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C7DA04382D492EEC00E74AB2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C7DA043B2D492EEC00E74AB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C7DA043D2D492EED00E74AB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7DA04402D492EED00E74AB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7DA04422D492EED00E74AB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 				C7DA04342D492EEC00E74AB2 /* AppDelegate.swift */,
 				C7DA04362D492EEC00E74AB2 /* SceneDelegate.swift */,
 				C7DA04382D492EEC00E74AB2 /* ViewController.swift */,
-				C7DA043A2D492EEC00E74AB2 /* Main.storyboard */,
 				C7DA043D2D492EED00E74AB2 /* Assets.xcassets */,
 				C7DA043F2D492EED00E74AB2 /* LaunchScreen.storyboard */,
 				C7DA04422D492EED00E74AB2 /* Info.plist */,
@@ -127,7 +124,6 @@
 			files = (
 				C7DA043E2D492EED00E74AB2 /* Assets.xcassets in Resources */,
 				C7DA04412D492EED00E74AB2 /* Base in Resources */,
-				C7DA043C2D492EEC00E74AB2 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +143,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C7DA043A2D492EEC00E74AB2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C7DA043B2D492EEC00E74AB2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C7DA043F2D492EED00E74AB2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,11 +280,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = kinobox/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -319,11 +307,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = kinobox/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
