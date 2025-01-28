@@ -12,9 +12,13 @@
 		C7DA04392D492EEC00E74AB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04382D492EEC00E74AB2 /* ViewController.swift */; };
 		C7DA043E2D492EED00E74AB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7DA043D2D492EED00E74AB2 /* Assets.xcassets */; };
 		C7DA04412D492EED00E74AB2 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C7DA04402D492EED00E74AB2 /* Base */; };
+		FEFB4FAB2D919F64B5245E22 /* Pods_kinobox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B734A747AC15202022DF1C3D /* Pods_kinobox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A56A168A050BA9FE5A1EE10 /* Pods-kinobox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kinobox.release.xcconfig"; path = "Target Support Files/Pods-kinobox/Pods-kinobox.release.xcconfig"; sourceTree = "<group>"; };
+		9DC2867ECA32C5A5CE774075 /* Pods-kinobox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kinobox.debug.xcconfig"; path = "Target Support Files/Pods-kinobox/Pods-kinobox.debug.xcconfig"; sourceTree = "<group>"; };
+		B734A747AC15202022DF1C3D /* Pods_kinobox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kinobox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7DA04312D492EEC00E74AB2 /* kinobox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kinobox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7DA04342D492EEC00E74AB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7DA04362D492EEC00E74AB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,17 +33,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEFB4FAB2D919F64B5245E22 /* Pods_kinobox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CF59260405ECDD1E585D84A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2867ECA32C5A5CE774075 /* Pods-kinobox.debug.xcconfig */,
+				0A56A168A050BA9FE5A1EE10 /* Pods-kinobox.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C4D824961C7F21EB8EAB065A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B734A747AC15202022DF1C3D /* Pods_kinobox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C7DA04282D492EEC00E74AB2 = {
 			isa = PBXGroup;
 			children = (
 				C7DA04332D492EEC00E74AB2 /* kinobox */,
 				C7DA04322D492EEC00E74AB2 /* Products */,
+				6CF59260405ECDD1E585D84A /* Pods */,
+				C4D824961C7F21EB8EAB065A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +96,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7DA04452D492EED00E74AB2 /* Build configuration list for PBXNativeTarget "kinobox" */;
 			buildPhases = (
+				5ADD9C78009646B88999CD23 /* [CP] Check Pods Manifest.lock */,
 				C7DA042D2D492EEC00E74AB2 /* Sources */,
 				C7DA042E2D492EEC00E74AB2 /* Frameworks */,
 				C7DA042F2D492EEC00E74AB2 /* Resources */,
+				6953745FAA7C9DB14EB0C197 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -128,6 +155,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5ADD9C78009646B88999CD23 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-kinobox-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6953745FAA7C9DB14EB0C197 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-kinobox/Pods-kinobox-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-kinobox/Pods-kinobox-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kinobox/Pods-kinobox-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C7DA042D2D492EEC00E74AB2 /* Sources */ = {
@@ -275,6 +344,7 @@
 		};
 		C7DA04462D492EED00E74AB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DC2867ECA32C5A5CE774075 /* Pods-kinobox.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +372,7 @@
 		};
 		C7DA04472D492EED00E74AB2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A56A168A050BA9FE5A1EE10 /* Pods-kinobox.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
