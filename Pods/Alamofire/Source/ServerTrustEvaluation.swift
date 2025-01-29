@@ -185,16 +185,16 @@ public final class RevocationTrustEvaluator: ServerTrustEvaluating {
         if #available(iOS 12, macOS 10.14, tvOS 12, watchOS 5, visionOS 1, *) {
             try trust.af.evaluate(afterApplying: SecPolicy.af.revocation(options: options))
         } else {
-            try trust.af.validate(policy: SecPolicy.af.revocation(options: options)) { status, result in
-                AFError.serverTrustEvaluationFailed(reason: .revocationCheckFailed(output: .init(host, trust, status, result), options: options))
+            try trust.af.validate(policy: SecPolicy.af.revocation(options: options)) { status, filmResult in
+                AFError.serverTrustEvaluationFailed(reason: .revocationCheckFailed(output: .init(host, trust, status, filmResult), options: options))
             }
         }
         #else
         if #available(iOS 12, macOS 10.14, tvOS 12, watchOS 5, *) {
             try trust.af.evaluate(afterApplying: SecPolicy.af.revocation(options: options))
         } else {
-            try trust.af.validate(policy: SecPolicy.af.revocation(options: options)) { status, result in
-                AFError.serverTrustEvaluationFailed(reason: .revocationCheckFailed(output: .init(host, trust, status, result), options: options))
+            try trust.af.validate(policy: SecPolicy.af.revocation(options: options)) { status, filmResult in
+                AFError.serverTrustEvaluationFailed(reason: .revocationCheckFailed(output: .init(host, trust, status, filmResult), options: options))
             }
         }
         #endif
@@ -571,11 +571,11 @@ extension AlamofireExtension where ExtendedType == SecTrust {
     @available(tvOS, introduced: 10, deprecated: 12, renamed: "evaluate()")
     @available(watchOS, introduced: 3, deprecated: 5, renamed: "evaluate()")
     public func validate(errorProducer: (_ status: OSStatus, _ result: SecTrustResultType) -> Error) throws {
-        var result = SecTrustResultType.invalid
-        let status = SecTrustEvaluate(type, &result)
+        var filmResult = SecTrustResultType.invalid
+        let status = SecTrustEvaluate(type, &filmResult)
 
-        guard status.af.isSuccess && result.af.isSuccess else {
-            throw errorProducer(status, result)
+        guard status.af.isSuccess && filmResult.af.isSuccess else {
+            throw errorProducer(status, filmResult)
         }
     }
 
@@ -643,16 +643,16 @@ extension AlamofireExtension where ExtendedType == SecTrust {
         if #available(iOS 12, macOS 10.14, tvOS 12, watchOS 5, visionOS 1, *) {
             try evaluate(afterApplying: SecPolicy.af.default)
         } else {
-            try validate(policy: SecPolicy.af.default) { status, result in
-                AFError.serverTrustEvaluationFailed(reason: .defaultEvaluationFailed(output: .init(host, type, status, result)))
+            try validate(policy: SecPolicy.af.default) { status, filmResult in
+                AFError.serverTrustEvaluationFailed(reason: .defaultEvaluationFailed(output: .init(host, type, status, filmResult)))
             }
         }
         #else
         if #available(iOS 12, macOS 10.14, tvOS 12, watchOS 5, *) {
             try evaluate(afterApplying: SecPolicy.af.default)
         } else {
-            try validate(policy: SecPolicy.af.default) { status, result in
-                AFError.serverTrustEvaluationFailed(reason: .defaultEvaluationFailed(output: .init(host, type, status, result)))
+            try validate(policy: SecPolicy.af.default) { status, filmResult in
+                AFError.serverTrustEvaluationFailed(reason: .defaultEvaluationFailed(output: .init(host, type, status, filmResult)))
             }
         }
         #endif
@@ -668,16 +668,16 @@ extension AlamofireExtension where ExtendedType == SecTrust {
         if #available(iOS 12, macOS 10.14, tvOS 12, watchOS 5, visionOS 1, *) {
             try evaluate(afterApplying: SecPolicy.af.hostname(host))
         } else {
-            try validate(policy: SecPolicy.af.hostname(host)) { status, result in
-                AFError.serverTrustEvaluationFailed(reason: .hostValidationFailed(output: .init(host, type, status, result)))
+            try validate(policy: SecPolicy.af.hostname(host)) { status, filmResult in
+                AFError.serverTrustEvaluationFailed(reason: .hostValidationFailed(output: .init(host, type, status, filmResult)))
             }
         }
         #else
         if #available(iOS 12, macOS 10.14, tvOS 12, watchOS 5, *) {
             try evaluate(afterApplying: SecPolicy.af.hostname(host))
         } else {
-            try validate(policy: SecPolicy.af.hostname(host)) { status, result in
-                AFError.serverTrustEvaluationFailed(reason: .hostValidationFailed(output: .init(host, type, status, result)))
+            try validate(policy: SecPolicy.af.hostname(host)) { status, filmResult in
+                AFError.serverTrustEvaluationFailed(reason: .hostValidationFailed(output: .init(host, type, status, filmResult)))
             }
         }
         #endif

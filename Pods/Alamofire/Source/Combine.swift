@@ -70,7 +70,7 @@ public struct DataResponsePublisher<Value>: Publisher {
     /// Publishes only the `Result` of the `DataResponse` value.
     ///
     /// - Returns: The `AnyPublisher` publishing the `Result<Value, AFError>` value.
-    public func result() -> AnyPublisher<Result<Value, AFError>, Never> {
+    public func filmResult() -> AnyPublisher<Result<Value, AFError>, Never> {
         map(\.result).eraseToAnyPublisher()
     }
 
@@ -280,11 +280,11 @@ public struct DataStreamPublisher<Value>: Publisher {
     /// Publishes only the `Result` of the `DataStreamRequest.Stream`'s `Event`s.
     ///
     /// - Returns: The `AnyPublisher` publishing the `Result<Value, AFError>` value.
-    public func result() -> AnyPublisher<Result<Value, AFError>, Never> {
+    public func filmResult() -> AnyPublisher<Result<Value, AFError>, Never> {
         compactMap { stream in
             switch stream.event {
-            case let .stream(result):
-                return result
+            case let .stream(filmResult):
+                return filmResult
             // If the stream has completed with an error, send the error value downstream as a `.failure`.
             case let .complete(completion):
                 return completion.error.map(Result.failure)
@@ -298,7 +298,7 @@ public struct DataStreamPublisher<Value>: Publisher {
     ///
     /// - Returns: The `AnyPublisher<Value, AFError>` publishing the stream.
     public func value() -> AnyPublisher<Value, AFError> {
-        result().setFailureType(to: AFError.self).flatMap(\.publisher).eraseToAnyPublisher()
+        filmResult().setFailureType(to: AFError.self).flatMap(\.publisher).eraseToAnyPublisher()
     }
 
     public func receive<S>(subscriber: S) where S: Subscriber, DataStreamPublisher.Failure == S.Failure, DataStreamPublisher.Output == S.Input {
@@ -439,7 +439,7 @@ public struct DownloadResponsePublisher<Value>: Publisher {
     /// Publishes only the `Result` of the `DownloadResponse` value.
     ///
     /// - Returns: The `AnyPublisher` publishing the `Result<Value, AFError>` value.
-    public func result() -> AnyPublisher<Result<Value, AFError>, Never> {
+    public func filmResult() -> AnyPublisher<Result<Value, AFError>, Never> {
         map(\.result).eraseToAnyPublisher()
     }
 

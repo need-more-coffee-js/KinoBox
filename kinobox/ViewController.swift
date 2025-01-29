@@ -8,14 +8,18 @@
 import UIKit
 import SnapKit
 import Alamofire
+import Kingfisher
 
-class ViewController: UIViewController, UITableViewDelegate {
+
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let userTextField = UITextField()
     let stackView = UIStackView()
     let searchButton = UIButton()
     let filmButton = UIButton()
     let resultView = UITableView()
+    var result: [FilmElement] = []
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +29,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         resultView.dataSource = self
         resultView.delegate = self
         resultView.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
-
+        searchButton.addTarget(self, action: #selector(getData), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
     
@@ -89,23 +93,52 @@ class ViewController: UIViewController, UITableViewDelegate {
             make.left.right.equalToSuperview().inset(20)
         }
     }
-
-}
-
-extension UIViewController : UITableViewDataSource{
+    
+    @objc func getData(){
+        let userData = URL(string:Api.url + (userTextField.text!))
+        var request = URLRequest(url: userData!)
+        
+        request.httpMethod = "GET"
+        request.setValue(Api.key, forHTTPHeaderField: Api.header)
+        
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }else{
+                if let data = data {
+                    let film: Film = try! JSONDecoder().decode(Film.self, from: data)
+                    DispatchQueue.main.async {
+                        film.films?.forEach({ filmElement in
+                            self.result.append(filmElement)
+                        })
+                        self.resultView.reloadData()
+                    }
+                }
+            }
+            
+        }
+        task.resume()
+    }
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        20
+        result.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
-        var configuration = cell.defaultContentConfiguration()
-        configuration.image = UIImage(named: "film")
-        configuration.text = "film"
-        cell.contentConfiguration = configuration
+        //var configuration = cell.defaultContentConfiguration()
+        
+        if let poster = result[indexPath.row].posterURLPreview , let posterURL = URL(string: poster) {
+            cell.imageForCell.kf.setImage(with: posterURL)
+        }else{
+            cell.imageForCell.image = UIImage(named: "film")
+        }
+        
+        cell.nameFilm.text = result[indexPath.row].nameRu
+        //cell.contentConfiguration = configuration
         return cell
     }
-    
-    
+
 }
+
+
 

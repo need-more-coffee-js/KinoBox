@@ -7,5 +7,6 @@ target 'kinobox' do
 
   pod 'SnapKit', '~> 5.6'
   pod 'Alamofire'
+  pod 'Kingfisher', '~> 7.0'
 
 end

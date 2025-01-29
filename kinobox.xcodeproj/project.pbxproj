@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C73A4D832D49431A00396FA2 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73A4D822D49431A00396FA2 /* CustomCell.swift */; };
+		C74367682D4A3F6600406167 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74367672D4A3F6600406167 /* API.swift */; };
+		C743676A2D4A3FAC00406167 /* FilmSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74367692D4A3FAC00406167 /* FilmSearchModel.swift */; };
+		C743676E2D4A5CDF00406167 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C743676D2D4A5CDF00406167 /* APIManager.swift */; };
 		C7DA04352D492EEC00E74AB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04342D492EEC00E74AB2 /* AppDelegate.swift */; };
 		C7DA04372D492EEC00E74AB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04362D492EEC00E74AB2 /* SceneDelegate.swift */; };
 		C7DA04392D492EEC00E74AB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04382D492EEC00E74AB2 /* ViewController.swift */; };
@@ -21,6 +24,9 @@
 		9DC2867ECA32C5A5CE774075 /* Pods-kinobox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kinobox.debug.xcconfig"; path = "Target Support Files/Pods-kinobox/Pods-kinobox.debug.xcconfig"; sourceTree = "<group>"; };
 		B734A747AC15202022DF1C3D /* Pods_kinobox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kinobox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73A4D822D49431A00396FA2 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		C74367672D4A3F6600406167 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		C74367692D4A3FAC00406167 /* FilmSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmSearchModel.swift; sourceTree = "<group>"; };
+		C743676D2D4A5CDF00406167 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		C7DA04312D492EEC00E74AB2 /* kinobox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kinobox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7DA04342D492EEC00E74AB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7DA04362D492EEC00E74AB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +93,9 @@
 				C7DA043F2D492EED00E74AB2 /* LaunchScreen.storyboard */,
 				C7DA04422D492EED00E74AB2 /* Info.plist */,
 				C73A4D822D49431A00396FA2 /* CustomCell.swift */,
+				C74367672D4A3F6600406167 /* API.swift */,
+				C74367692D4A3FAC00406167 /* FilmSearchModel.swift */,
+				C743676D2D4A5CDF00406167 /* APIManager.swift */,
 			);
 			path = kinobox;
 			sourceTree = "<group>";
@@ -206,9 +215,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7DA04392D492EEC00E74AB2 /* ViewController.swift in Sources */,
+				C743676A2D4A3FAC00406167 /* FilmSearchModel.swift in Sources */,
 				C7DA04352D492EEC00E74AB2 /* AppDelegate.swift in Sources */,
 				C73A4D832D49431A00396FA2 /* CustomCell.swift in Sources */,
 				C7DA04372D492EEC00E74AB2 /* SceneDelegate.swift in Sources */,
+				C74367682D4A3F6600406167 /* API.swift in Sources */,
+				C743676E2D4A5CDF00406167 /* APIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
