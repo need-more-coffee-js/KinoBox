@@ -16,7 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let userTextField = UITextField()
     let stackView = UIStackView()
     let searchButton = UIButton()
-    let filmButton = UIButton()
+    let topFilmButton = UIButton()
     let resultView = UITableView()
     var result: [FilmElement] = []
 
@@ -29,8 +29,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         resultView.dataSource = self
         resultView.delegate = self
         resultView.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
-        searchButton.addTarget(self, action: #selector(getData), for: .touchUpInside)
-        // Do any additional setup after loading the view.
+        searchButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        topFilmButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
     }
     
     func addElementsOnView(){
@@ -49,19 +49,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         searchButton.setTitle("Поиск", for: .normal)
         searchButton.layer.cornerRadius = 10
         
-        filmButton.backgroundColor = .systemBlue
-        filmButton.setTitle("Популярные фильмы", for: .normal)
-        filmButton.layer.cornerRadius = 10
+        topFilmButton.backgroundColor = .systemBlue
+        topFilmButton.setTitle("Популярные фильмы", for: .normal)
+        topFilmButton.layer.cornerRadius = 10
         
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.alignment = .center
         stackView.addArrangedSubview(searchButton)
-        stackView.addArrangedSubview(filmButton)
+        stackView.addArrangedSubview(topFilmButton)
         stackView.spacing = 20
-        stackView.backgroundColor = .cyan
         
-        resultView.backgroundColor = .red
+        resultView.rowHeight = 150
     }
     
     func constraintsConfigure(){
@@ -82,7 +81,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             make.left.right.equalToSuperview().inset(80)
         }
         
-        filmButton.snp.makeConstraints { make in
+        topFilmButton.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.left.right.equalToSuperview().inset(20)
         }
@@ -94,8 +93,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    @objc func getData(){
-        let userData = URL(string:Api.url + (userTextField.text!))
+     func getData(api: String)->[FilmElement]{
+         let userData: URL?
+         
+         if (userTextField.text?.isEmpty)!{
+              userData = URL(string: Api.urlTopFilm)
+         }else{
+             userData = URL(string:Api.urlKeyword + (userTextField.text!))
+         }
+         
         var request = URLRequest(url: userData!)
         
         request.httpMethod = "GET"
@@ -118,14 +124,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }
         task.resume()
+        return result
     }
+
+    @objc func buttonTapped(_ sender: UIButton){
+        if sender == searchButton && (userTextField.text?.isEmpty)! {
+            getData(api: Api.urlKeyword)
+        }else if sender == topFilmButton {
+            getData(api: Api.urlTopFilm)
+        }
+        
+    }
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         result.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
-        //var configuration = cell.defaultContentConfiguration()
         
         if let poster = result[indexPath.row].posterURLPreview , let posterURL = URL(string: poster) {
             cell.imageForCell.kf.setImage(with: posterURL)
@@ -134,9 +150,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         cell.nameFilm.text = result[indexPath.row].nameRu
-        //cell.contentConfiguration = configuration
         return cell
     }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let filmDetailVC = DetailFilmViewController()
+        let film = result[indexPath.row]
+        
+        filmDetailVC.movieTitle = film.nameRu
+        filmDetailVC.originalTitle = film.nameEn
+        filmDetailVC.posterURL = film.posterURL
+        filmDetailVC.descriptionText = film.description
+        filmDetailVC.ratingsText = film.rating
+        filmDetailVC.yearText = film.year
+        filmDetailVC.durationText = film.filmLength
+
+        present(filmDetailVC, animated: true, completion: nil)
+    }
+    
+    // MARK: - Alert Message
+        func alert(title:String,message:String){
+            let alert = UIAlertController(title:title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+        }
 
 }
 

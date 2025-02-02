@@ -9,9 +9,6 @@ import UIKit
 import SnapKit
 
 class CustomCell: UITableViewCell {
-    
-    //var imageForCell: UIImageView!
-    //var nameFilm: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,8 +17,6 @@ class CustomCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
@@ -35,6 +30,8 @@ class CustomCell: UITableViewCell {
     
     let nameFilm: UILabel = {
         let name = UILabel()
+        name.numberOfLines = 0
+        name.textAlignment = .left
         return name
     }()
     let imageForCell: UIImageView = {
@@ -44,10 +41,9 @@ class CustomCell: UITableViewCell {
     }()
     let stackView: UIStackView = {
         let sv = UIStackView()
-        sv.axis = .vertical
-        sv.distribution = .fillEqually
+        sv.axis = .horizontal
         sv.alignment = .center
-        //sv.spacing = 20
+        sv.spacing = 8
         return sv
     }()
 
@@ -56,15 +52,19 @@ class CustomCell: UITableViewCell {
         addSubview(stackView)
         stackView.addArrangedSubview(imageForCell)
         stackView.addArrangedSubview(nameFilm)
-        addSubview(imageForCell)
-        addSubview(nameFilm)
         
         stackView.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalToSuperview()
+            make.center.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         imageForCell.snp.makeConstraints { make in
-            make.top.equalTo(stackView.snp.top)
-            make.left.equalTo(stackView.snp.left)
+            make.width.equalTo(80)
+            make.height.equalTo(stackView.snp.height)
+        }
+        
+        nameFilm.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(50)
+            make.top.bottom.equalToSuperview()
         }
     }
 }
