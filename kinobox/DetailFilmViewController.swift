@@ -39,7 +39,7 @@ class DetailFilmViewController: UIViewController {
         titleLabel.text = movieTitle
         originalTitleLabel.text = originalTitle
         descriptionLabel.text = descriptionText
-        ratingsLabel.text = "Рейтинг Кинопоиск: " + (ratingsText ?? "Нет информации")
+        ratingsLabel.text = "Рейтинг: " + (ratingsText ?? "no info")
         yearLabel.text = "Год производства: " + (yearText ?? "Нет информации")
         durationLabel.text = "Продолжительность: " + (durationText ?? "Нет информации")
         

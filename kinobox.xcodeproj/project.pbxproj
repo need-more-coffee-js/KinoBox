@@ -11,6 +11,7 @@
 		C74367682D4A3F6600406167 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74367672D4A3F6600406167 /* API.swift */; };
 		C743676A2D4A3FAC00406167 /* FilmSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74367692D4A3FAC00406167 /* FilmSearchModel.swift */; };
 		C78E220C2D4FB35300CD11C2 /* DetailFilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78E220B2D4FB35300CD11C2 /* DetailFilmViewController.swift */; };
+		C79629F92D54B52D000DC486 /* FilmSearchById.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79629F82D54B52D000DC486 /* FilmSearchById.swift */; };
 		C7DA04352D492EEC00E74AB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04342D492EEC00E74AB2 /* AppDelegate.swift */; };
 		C7DA04372D492EEC00E74AB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04362D492EEC00E74AB2 /* SceneDelegate.swift */; };
 		C7DA04392D492EEC00E74AB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DA04382D492EEC00E74AB2 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 		C74367672D4A3F6600406167 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		C74367692D4A3FAC00406167 /* FilmSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmSearchModel.swift; sourceTree = "<group>"; };
 		C78E220B2D4FB35300CD11C2 /* DetailFilmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFilmViewController.swift; sourceTree = "<group>"; };
+		C79629F82D54B52D000DC486 /* FilmSearchById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmSearchById.swift; sourceTree = "<group>"; };
 		C7DA04312D492EEC00E74AB2 /* kinobox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kinobox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7DA04342D492EEC00E74AB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7DA04362D492EEC00E74AB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				C74367672D4A3F6600406167 /* API.swift */,
 				C74367692D4A3FAC00406167 /* FilmSearchModel.swift */,
 				C78E220B2D4FB35300CD11C2 /* DetailFilmViewController.swift */,
+				C79629F82D54B52D000DC486 /* FilmSearchById.swift */,
 			);
 			path = kinobox;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				C7DA04352D492EEC00E74AB2 /* AppDelegate.swift in Sources */,
 				C78E220C2D4FB35300CD11C2 /* DetailFilmViewController.swift in Sources */,
 				C73A4D832D49431A00396FA2 /* CustomCell.swift in Sources */,
+				C79629F92D54B52D000DC486 /* FilmSearchById.swift in Sources */,
 				C7DA04372D492EEC00E74AB2 /* SceneDelegate.swift in Sources */,
 				C74367682D4A3F6600406167 /* API.swift in Sources */,
 			);
@@ -365,6 +369,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4KFUD4SUDH;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = kinobox/Info.plist;
@@ -393,6 +398,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4KFUD4SUDH;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = kinobox/Info.plist;

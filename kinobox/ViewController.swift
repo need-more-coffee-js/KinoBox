@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let searchButton = UIButton()
     let topFilmButton = UIButton()
     let resultView = UITableView()
-    var result: [FilmElement] = []
+    var resultKeywordTopFilm: [FilmElement] = []
 
 
     override func viewDidLoad() {
@@ -29,8 +29,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         resultView.dataSource = self
         resultView.delegate = self
         resultView.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
-        searchButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-        topFilmButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        searchButton.addTarget(self, action: #selector(searchByKeyword), for: .touchUpInside)
+        topFilmButton.addTarget(self, action: #selector(searchTopFilm), for: .touchUpInside)
     }
     
     func addElementsOnView(){
@@ -44,6 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         userTextField.layer.cornerRadius = 10
         userTextField.layer.borderWidth = 1
+        userTextField.clearButtonMode = .whileEditing
         
         searchButton.backgroundColor = .systemBlue
         searchButton.setTitle("Поиск", for: .normal)
@@ -93,15 +94,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-     func getData(api: String)->[FilmElement]{
-         let userData: URL?
-         
+     @objc func searchByKeyword(){
          if (userTextField.text?.isEmpty)!{
-              userData = URL(string: Api.urlTopFilm)
-         }else{
-             userData = URL(string:Api.urlKeyword + (userTextField.text!))
+              alert(title: "Пустой запрос", message: "Пожалуйства,введите название фильма")
          }
          
+        let userData = URL(string:Api.urlKeyword + (userTextField.text!))
         var request = URLRequest(url: userData!)
         
         request.httpMethod = "GET"
@@ -115,7 +113,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     let film: Film = try! JSONDecoder().decode(Film.self, from: data)
                     DispatchQueue.main.async {
                         film.films?.forEach({ filmElement in
-                            self.result.append(filmElement)
+                            self.resultKeywordTopFilm.append(filmElement)
+                            print(film)
                         })
                         self.resultView.reloadData()
                     }
@@ -124,52 +123,104 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }
         task.resume()
-        return result
-    }
-
-    @objc func buttonTapped(_ sender: UIButton){
-        if sender == searchButton && (userTextField.text?.isEmpty)! {
-            getData(api: Api.urlKeyword)
-        }else if sender == topFilmButton {
-            getData(api: Api.urlTopFilm)
-        }
-        
     }
     
+    @objc func searchTopFilm(){
+       let userData = URL(string:Api.urlTopFilm)
+       var request = URLRequest(url: userData!)
+       
+       request.httpMethod = "GET"
+       request.setValue(Api.key, forHTTPHeaderField: Api.header)
+       
+       let task = URLSession.shared.dataTask(with: request) {data, response, error in
+           if let error = error {
+               print(error.localizedDescription)
+           }else{
+               if let data = data {
+                   let film: Film = try! JSONDecoder().decode(Film.self, from: data)
+                   DispatchQueue.main.async {
+                       film.films?.forEach({ filmElement in
+                           self.resultKeywordTopFilm.append(filmElement)
+                           print(film)
+                       })
+                       self.resultView.reloadData()
+                   }
+               }
+           }
+           
+       }
+       task.resume()
+   }
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        result.count
+        resultKeywordTopFilm.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
         
-        if let poster = result[indexPath.row].posterURLPreview , let posterURL = URL(string: poster) {
+        if let poster = resultKeywordTopFilm[indexPath.row].posterURLPreview , let posterURL = URL(string: poster) {
             cell.imageForCell.kf.setImage(with: posterURL)
         }else{
             cell.imageForCell.image = UIImage(named: "film")
         }
         
-        cell.nameFilm.text = result[indexPath.row].nameRu
+        cell.nameFilm.text = resultKeywordTopFilm[indexPath.row].nameRu
         return cell
     }
+    
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let filmDetailVC = DetailFilmViewController()
-        let film = result[indexPath.row]
-        
-        filmDetailVC.movieTitle = film.nameRu
-        filmDetailVC.originalTitle = film.nameEn
-        filmDetailVC.posterURL = film.posterURL
-        filmDetailVC.descriptionText = film.description
-        filmDetailVC.ratingsText = film.rating
-        filmDetailVC.yearText = film.year
-        filmDetailVC.durationText = film.filmLength
+        func searchFilmByID(){
+            let filmDetailVC = DetailFilmViewController()
+            let film = resultKeywordTopFilm[indexPath.row]
+            let url = URL(string: Api.urlFilmId + String(describing: film.filmID!))
 
-        present(filmDetailVC, animated: true, completion: nil)
+            var request = URLRequest(url: url!)
+            request.httpMethod = "GET"
+            request.setValue(Api.key, forHTTPHeaderField: Api.header)
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }else{
+                    if let data = data {
+                        let filmByID: FilmSearchByID = try! JSONDecoder().decode(FilmSearchByID.self, from: data)
+                        DispatchQueue.main.async {
+                            filmDetailVC.movieTitle = filmByID.nameRu
+                            filmDetailVC.originalTitle = filmByID.nameOriginal
+                            filmDetailVC.posterURL = filmByID.posterURL
+                            filmDetailVC.descriptionText = filmByID.description
+                            if filmByID.ratingKinopoisk == nil {
+                                filmDetailVC.ratingsText = "no info"
+                            }else {
+                                filmDetailVC.ratingsText = String(describing: filmByID.ratingKinopoisk!)
+                            }
+                            if filmByID.year == nil {
+                                filmDetailVC.yearText = "no info"
+                            }else {
+                                filmDetailVC.yearText = String(describing: filmByID.year!)
+                            }
+                            if filmByID.filmLength == nil {
+                                filmDetailVC.durationText = "no info"
+                            }else {
+                                filmDetailVC.durationText = String(describing: filmByID.filmLength!)
+                            }
+                            print(filmByID)
+                            self.resultView.reloadData()
+                            self.present(filmDetailVC, animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+        searchFilmByID()
+        
     }
-    
+
     // MARK: - Alert Message
         func alert(title:String,message:String){
             let alert = UIAlertController(title:title, message: message, preferredStyle: .alert)
